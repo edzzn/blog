@@ -5,7 +5,7 @@ const fullConfig = resolveConfig(tailwindConfig);
 
 module.exports = {
   siteMetadata: {
-    title: `EdissonReinozo.com`,
+    title: `👨‍💻 EdissonReinozo.com`,
     description: `Artículos de React, Flutter y AWS.`,
     author: `Edisson Reinozo`,
   },

@@ -16,6 +16,7 @@ function IndexPage() {
         {/* <aside className='col-span-12 lg:col-span-3 bg-gray-100'>aside</aside> */}
         <section className='col-span-12 lg:col-span-auto '>
           <Hero />
+          <p className='font-title'>dasFira Code</p>
           <RecentArticles />
         </section>
       </div>

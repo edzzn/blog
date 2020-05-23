@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className='bg-gray-900'>
-    <nav className='flex justify-between max-w-6xl p-4 mx-auto text-sm md:p-4 text-white'>
+  <footer className='bg-editor'>
+    <nav className='flex justify-between max-w-6xl p-3 mx-auto text-sm md:p-3 text-white'>
       <p>
         © {new Date().getFullYear()}
         {` `}

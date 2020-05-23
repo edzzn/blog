@@ -14,11 +14,11 @@ function Header() {
   `);
 
   return (
-    <header className='bg-gray-900'>
-      <div className='flex flex-wrap items-center justify-between max-w-6xl p-4 mx-auto md:p-6'>
+    <header className='bg-editor'>
+      <div className='flex flex-wrap items-center justify-between max-w-6xl p-4 mx-auto md:p-4'>
         <Link to='/'>
           <h1 className='flex items-center text-white no-underline'>
-            <span className='text-xl font-bold tracking-tight'>
+            <span className='text-2xl font-bold tracking-tight'>
               {site.siteMetadata.title}
             </span>
           </h1>

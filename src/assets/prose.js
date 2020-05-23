@@ -4,12 +4,20 @@ export default {
   subscriberCount: 5000,
   main: {
     description: (
-      <span className='text-2xl'>
-        Soy Edisson Reinozo, Software Developer, AWS Educate Could Ambassador.
-        En mi blog enseño{' '}
-        <span className=' p-1 font-bold bg-blue-600 text-white'>ReactJS</span>,{' '}
-        <span className=' p-1 font-bold bg-blue-800 text-white'>Flutter</span> y{' '}
-        <span className=' p-1 font-bold bg-yellow-400'>AWS</span>{' '}
+      <span className='font-sans text-4xl font-bold'>
+        ¡Hola 👋! Soy Edisson Reinozo, Software Developer, AWS Educate Could
+        Ambassador. En mi blog enseño{' '}
+        <span className='font-mono p-1 font-extrabold bg-react text-white'>
+          ReactJS
+        </span>
+        ,{' '}
+        <span className='font-mono p-1 font-extrabold bg-flutter-dark text-white'>
+          Flutter
+        </span>{' '}
+        y{' '}
+        <span className='font-mono p-1 font-extrabold bg-aws text-white'>
+          AWS
+        </span>{' '}
       </span>
     ),
     'description-expanded': <span></span>,
