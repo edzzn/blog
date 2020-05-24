@@ -6,7 +6,7 @@ export default {
     description: (
       <span className='font-sans text-4xl font-bold'>
         ¡Hola 👋! Soy Edisson Reinozo, Software Developer, AWS Educate Could
-        Ambassador. En mi blog enseño{' '}
+        Ambassador. En mi blog hablo de{' '}
         <span className='font-mono p-1 font-extrabold bg-react text-white'>
           ReactJS
         </span>
