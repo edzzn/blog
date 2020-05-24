@@ -1,8 +1,8 @@
 ---
 templateKey: article
 title: 'Este es un artículo de prueba'
-date: '2020-05-23'
-updated: '2020-05-23'
+date: '2020-05-24'
+updated: '2020-05-24'
 description: A veces es necesario tener un segundo artículo para poder probar tu diseño.
 tags:
   - Off topic

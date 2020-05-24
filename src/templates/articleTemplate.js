@@ -4,7 +4,7 @@ import Layout from '../components/shared/layout';
 
 import PropTypes from 'prop-types';
 // import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 function ArticleTemplate({
   data, // this prop will be injected by the GraphQL query below.
@@ -20,11 +20,19 @@ function ArticleTemplate({
     >
       <section className='lg:mx-32'>
         <h1>{frontmatter.title}</h1>
-        {/* <h5>{frontmatter.category}</h5> */}
 
         <img src={frontmatter.image} />
-        <br />
-        <br />
+        <Link to='#'>
+          <span className='category'>{frontmatter.category}</span>
+        </Link>
+        <div className='tags my-2'>
+          {frontmatter.tags.map((tag) => (
+            <span className='tag' key={tag}>
+              {tag}
+            </span>
+          ))}
+        </div>
+        <hr className='mb-3' />
         <div
           className='blog-post-content'
           dangerouslySetInnerHTML={{ __html: html }}
@@ -65,6 +73,7 @@ export const pageQuery = graphql`
         title
         image
         category
+        tags
       }
     }
   }
