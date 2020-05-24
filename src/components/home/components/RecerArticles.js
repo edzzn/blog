@@ -1,33 +1,18 @@
 import React from 'react';
 import { StaticQuery, graphql, Link } from 'gatsby';
 import PropTypes from 'prop-types';
-// import arrowForward from '../../../images/icons/arrow-forward.svg';
 import { getArticlesFromQuery } from '../../../utils/article';
-// import { BlogsContainer } from '../../shared/blogs';
+import { ArticleCard } from '../../articles';
+
 const RecentArticles = ({ articles }) => (
   <section>
     <h2>Artículos Recientes</h2>
-    {/* <Link>Ver todos</Link> */}
+    <Link to='articulos'>
+      <span className='category'>Ver todos ➤</span>
+    </Link>
     <div className='grid grid-cols-12'>
       {articles.map((article) => (
-        <div key={article.slug} className='col-span-12 sm:col-span-6 p-3'>
-          <Link to={article.slug}>
-            <img src={article.image} />
-            <h3>{article.title}</h3>
-          </Link>
-          <Link to='#'>
-            <span className='category'>{article.category}</span>
-          </Link>
-          <br />
-          <div className='tags'>
-            {article.tags.map((tag) => (
-              <span className='tag' key={tag}>
-                {tag}
-              </span>
-            ))}
-          </div>
-          <p>{article.description}</p>
-        </div>
+        <ArticleCard key={article.slug} article={article} />
       ))}
     </div>
   </section>
@@ -108,35 +93,6 @@ const RenderRecentArticles = () => (
                 title
                 date
                 updated
-                description
-                tags
-                category
-                image
-              }
-            }
-          }
-        }
-        posts: allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
-          filter: {
-            frontmatter: {
-              templateKey: { eq: "article" }
-              published: { eq: true }
-            }
-          }
-          limit: 6
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-                # readingTime {
-                #   text
-                # }
-              }
-              frontmatter {
-                title
-                date
                 description
                 tags
                 category
