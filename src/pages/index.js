@@ -14,7 +14,7 @@ function IndexPage() {
     >
       <div className='grid grid-cols-12 gap-4'>
         {/* <aside className='col-span-12 lg:col-span-3 bg-gray-100'>aside</aside> */}
-        <section className='col-span-12 lg:col-span-auto '>
+        <section className='col-span-12 lg:col-span-auto'>
           <Hero />
           <RecentArticles />
         </section>

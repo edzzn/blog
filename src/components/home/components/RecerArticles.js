@@ -8,7 +8,7 @@ const RecentArticles = ({ articles }) => (
   <section>
     <h2>Artículos Recientes</h2>
     {/* <Link>Ver todos</Link> */}
-    <div className='grid grid-cols-12 gap-20'>
+    <div className='grid grid-cols-12'>
       {articles.map((article) => (
         <div key={article.slug} className='col-span-12 sm:col-span-6 p-3'>
           <Link to={article.slug}>
@@ -47,6 +47,7 @@ RecentArticles.propTypes = {
     })
   ).isRequired,
 };
+
 const RenderRecentArticles = () => (
   <StaticQuery
     query={graphql`
