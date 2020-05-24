@@ -18,7 +18,7 @@ function ArticleTemplate({
         keywords: [`react`, `flutter`, `aws`],
       }}
     >
-      <section className='mx-32'>
+      <section className='lg:mx-32'>
         <h1>{frontmatter.title}</h1>
         {/* <h5>{frontmatter.category}</h5> */}
 
