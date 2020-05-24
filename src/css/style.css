@@ -1,6 +1,14 @@
 /*! purgecss start ignore */
 @tailwind base;
 
+p {
+  @apply text-lg;
+}
+
+span {
+  @apply text-lg;
+}
+
 h1 {
   @apply text-5xl;
   @apply font-sans;
@@ -25,6 +33,30 @@ h4 {
 h5 {
   @apply text-xl;
   @apply font-normal;
+}
+
+/* Categories */
+
+.category {
+  @apply text-xl;
+  @apply text-flutter;
+  @apply font-bold;
+}
+
+/* Tags */
+
+.tags {}
+
+.tag {
+  @apply px-2;
+  @apply py-1;
+  @apply mr-2;
+  @apply mb-2;
+  @apply inline-block;
+  @apply bg-editor;
+  @apply rounded;
+  @apply text-white;
+  @apply font-semibold;
 }
 
 /* Code - Prism */
