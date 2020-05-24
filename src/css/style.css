@@ -1,5 +1,32 @@
 /*! purgecss start ignore */
 @tailwind base;
+
+h1 {
+  @apply text-5xl;
+  @apply font-sans;
+  @apply font-black;
+}
+
+h2 {
+  @apply text-4xl;
+  @apply font-bold;
+}
+
+h3 {
+  @apply text-3xl;
+  @apply font-semibold;
+}
+
+h4 {
+  @apply text-2xl;
+  @apply font-medium;
+}
+
+h5 {
+  @apply text-xl;
+  @apply font-normal;
+}
+
 @tailwind components;
 /*! purgecss end ignore */
 @tailwind utilities;
