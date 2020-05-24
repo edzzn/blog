@@ -13,6 +13,39 @@ module.exports = {
     `gatsby-plugin-eslint`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/pages`,
+        name: `markdown-pages`,
+      },
+    },
+    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/images`,
+      },
+    },
+    // {
+    //   resolve: 'gatsby-transformer-remark',
+    //   options: {
+    //     plugins: [
+    //       // `gatsby-remark-reading-time`,
+    //       '@weknow/gatsby-remark-twitter',
+    //       {
+    //         // Adds code
+    //         resolve: `gatsby-remark-prismjs`,
+    //         options: {
+    //           classPrefix: 'language-',
+    //           inlineCodeMarker: null,
+    //           aliases: {},
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-tailwind`,
