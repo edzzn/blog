@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Layout from '../components/shared/layout';
-import { StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql, Link } from 'gatsby';
 import {
   getTagsFromQuery,
   getCategoriesFromQuery,
   getArticlesFromQuery,
+  slugify,
 } from '../utils/article';
 import {
   // ArticleCard,
@@ -25,11 +26,43 @@ class ArticlesPage extends React.Component {
     };
 
     this.filterArticles = this.filterArticles.bind(this);
+    this.isCategoryPage = this.isCategoryPage.bind(this);
+    this.isTagPage = this.isTagPage.bind(this);
+    this.getPageCatOrTagFilter = this.getPageCatOrTagFilter.bind(this);
+    this.infoTagCatPage = this.infoTagCatPage.bind(this);
+  }
+
+  isCategoryPage() {
+    return this.props.isCategoryPage;
+  }
+  isTagPage() {
+    return this.props.isTagPage;
+  }
+
+  getPageCatOrTagFilter() {
+    if (this.isCategoryPage()) return this.props.pageContext.category;
+    if (this.isTagPage()) return this.props.pageContext.tag;
+    return '';
   }
 
   filterArticles(articles) {
+    let filteredArticles = [...articles];
+    const catOrTagFilter = this.getPageCatOrTagFilter();
+
+    if (this.isCategoryPage() && catOrTagFilter) {
+      filteredArticles = filteredArticles.filter(
+        (article) => slugify(article.category) === catOrTagFilter
+      );
+    }
+
+    if (this.isTagPage() && catOrTagFilter) {
+      filteredArticles = filteredArticles.filter((article) => {
+        return article.tags.some((tag) => slugify(tag) === catOrTagFilter);
+      });
+    }
+
     if (this.state.filterText !== '') {
-      return [...articles].filter((article) => {
+      return filteredArticles.filter((article) => {
         const lowerCasedFilteredText = this.state.filterText.toLowerCase();
         const inTitle = article.title
           .toLowerCase()
@@ -43,7 +76,17 @@ class ArticlesPage extends React.Component {
         return inTitle || inCategory || inDescription;
       });
     }
-    return articles;
+    return filteredArticles;
+  }
+
+  infoTagCatPage() {
+    if (this.isTagPage() || this.isCategoryPage())
+      return (
+        <h4>
+          Mostrando articulos sobre:{' '}
+          <strong>{this.getPageCatOrTagFilter()}</strong>
+        </h4>
+      );
   }
 
   render() {
@@ -60,24 +103,30 @@ class ArticlesPage extends React.Component {
           slug: '/articulos',
         }}
       >
-        <h1>Artículos</h1>
+        <h2>Artículos</h2>
+
         <div className='flex mt-3'>
           <aside className='hidden md:w-1/4 md:block xl:w-1/5'>
             <h3>Tags</h3>
             {tags.map((tag) => (
-              <p className='tag' key={tag}>
-                {tag}
-              </p>
+              <Link to={`/articulos/tag/${slugify(tag)}`} key={tag}>
+                {' '}
+                <p className='tag'>{tag}</p>
+              </Link>
             ))}
           </aside>
           <section className='md:w-3/4 xl:w-4/5 '>
             <h3>Categorías:</h3>
+            <span className='category mr-3'>
+              <Link to={`/articulos`}>Todos</Link>
+            </span>
             {categories.map((category) => (
               <span className='category mr-3' key={category}>
-                {category}
+                <Link to={`/articulos/categoria/${slugify(category)}`}>
+                  {category}
+                </Link>
               </span>
             ))}
-
             <ArticlesFilter
               count={filteredArticles.length}
               filterText={this.state.filterText ? this.state.filterText : ''}
@@ -88,7 +137,7 @@ class ArticlesPage extends React.Component {
               }}
             />
             <hr />
-
+            {this.infoTagCatPage()}
             <ArticlesContainer articles={filteredArticles} />
           </section>
         </div>
@@ -98,12 +147,18 @@ class ArticlesPage extends React.Component {
 }
 
 ArticlesPage.propTypes = {
+  isCategoryPage: PropTypes.bool,
+  isTagPage: PropTypes.bool,
   tags: PropTypes.object.isRequired,
   categories: PropTypes.object.isRequired,
   articles: PropTypes.object.isRequired,
+  pageContext: PropTypes.shape({
+    category: PropTypes.string,
+    tag: PropTypes.string,
+  }),
 };
 
-const renderArticles = () => (
+const renderArticles = (props) => (
   <StaticQuery
     query={graphql`
       query ArticlesPage {
@@ -171,7 +226,7 @@ const renderArticles = () => (
       }
     `}
     render={(data) => {
-      return <ArticlesPage {...data} />;
+      return <ArticlesPage {...props} {...data} />;
     }}
   />
 );

@@ -5,6 +5,7 @@ import Layout from '../components/shared/layout';
 import PropTypes from 'prop-types';
 // import React from 'react';
 import { graphql, Link } from 'gatsby';
+import { slugify } from '../utils/article';
 
 function ArticleTemplate({
   data, // this prop will be injected by the GraphQL query below.
@@ -22,14 +23,14 @@ function ArticleTemplate({
         <h1>{frontmatter.title}</h1>
 
         <img src={frontmatter.image} />
-        <Link to='#'>
+        <Link to={`/articulos/categoria/${slugify(frontmatter.category)}`}>
           <span className='category'>{frontmatter.category}</span>
         </Link>
         <div className='tags my-2'>
           {frontmatter.tags.map((tag) => (
-            <span className='tag' key={tag}>
-              {tag}
-            </span>
+            <Link to={`/articulos/tag/${slugify(tag)}`} key={tag}>
+              <span className='tag'>{tag}</span>
+            </Link>
           ))}
         </div>
         <hr className='mb-3' />
@@ -53,7 +54,7 @@ ArticleTemplate.propTypes = {
         image: PropTypes.string,
         date: PropTypes.string.isRequired,
         category: PropTypes.string,
-        description: PropTypes.string.isRequired,
+        description: PropTypes.string,
         tags: PropTypes.arrayOf(PropTypes.string).isRequired,
       }).isRequired,
       html: PropTypes.string,
