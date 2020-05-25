@@ -10,6 +10,7 @@ function IndexPage() {
       seo={{
         title: 'Home',
         keywords: [`react`, `flutter`, `aws`],
+        slug: '/',
       }}
     >
       <div className='grid grid-cols-12 gap-4'>

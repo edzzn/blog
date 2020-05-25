@@ -27,7 +27,7 @@ RecentArticles.propTypes = {
       updated: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-      topic: PropTypes.string.isRequired,
+      topic: PropTypes.string,
       image: PropTypes.string.isRequired,
     })
   ).isRequired,
