@@ -2,23 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'gatsby';
+import { slugify } from '../../../utils/article';
 
 function ArticleCard({ article }) {
   return (
     <div key={article.slug} className='col-span-12 sm:col-span-6 p-3'>
-      <Link to={article.slug}>
+      <Link to={`/${article.slug}`}>
         <img src={article.image} />
         <h3>{article.title}</h3>
       </Link>
-      <Link to='#'>
+      <Link to={`/articulos/categoria/${slugify(article.category)}`}>
         <span className='category'>{article.category}</span>
       </Link>
       <br />
       <div className='tags'>
         {article.tags.map((tag) => (
-          <span className='tag' key={tag}>
-            {tag}
-          </span>
+          <Link to={`/articulos/tag/${slugify(tag)}`} key={tag}>
+            <span className='tag'>{tag}</span>
+          </Link>
         ))}
       </div>
       <p>{article.description}</p>

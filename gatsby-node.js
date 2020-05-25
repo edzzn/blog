@@ -74,7 +74,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   categories.forEach((category) => {
     createPage({
-      path: `categoria/${category}`,
+      path: `articulos/categoria/${category}`,
       component: categoryTemplate,
       context: {
         // additional data can be passed via context
@@ -95,7 +95,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   tags.forEach((tag) => {
     createPage({
-      path: `tag/${tag}`,
+      path: `articulos/tag/${tag}`,
       component: tagTemplate,
       context: {
         // additional data can be passed via context

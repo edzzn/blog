@@ -7,7 +7,7 @@ import { ArticleCard } from '../../articles';
 const RecentArticles = ({ articles }) => (
   <section>
     <h2>Artículos Recientes</h2>
-    <Link to='articulos'>
+    <Link to='/articulos'>
       <span className='category'>Ver todos ➤</span>
     </Link>
     <div className='grid grid-cols-12'>
