@@ -38,7 +38,7 @@ class Layout extends React.Component {
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   seo: PropTypes.shape({
-    pageType: PropTypes.string.isRequired,
+    pageType: PropTypes.string,
     // post: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string,

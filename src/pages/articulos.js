@@ -7,19 +7,57 @@ import {
   getCategoriesFromQuery,
   getArticlesFromQuery,
 } from '../utils/article';
-import ArticleCard from '../components/articles/components/ArticleCard';
+import {
+  // ArticleCard,
+  ArticlesFilter,
+  ArticlesContainer,
+} from '../components/articles';
 
 class ArticlesPage extends React.Component {
+  static articlesPerPage = 6;
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filterText: '',
+      currentPage: 1,
+    };
+
+    this.filterArticles = this.filterArticles.bind(this);
+  }
+
+  filterArticles(articles) {
+    if (this.state.filterText !== '') {
+      return [...articles].filter((article) => {
+        const lowerCasedFilteredText = this.state.filterText.toLowerCase();
+        const inTitle = article.title
+          .toLowerCase()
+          .includes(lowerCasedFilteredText);
+        const inDescription = article.description
+          .toLowerCase()
+          .includes(lowerCasedFilteredText);
+        const inCategory = article.category
+          .toLowerCase()
+          .includes(lowerCasedFilteredText);
+        return inTitle || inCategory || inDescription;
+      });
+    }
+    return articles;
+  }
+
   render() {
     const tags = getTagsFromQuery(this.props.tags);
     const categories = getCategoriesFromQuery(this.props.categories);
     const articles = getArticlesFromQuery(this.props.articles);
+    const filteredArticles = this.filterArticles(articles);
 
     return (
       <Layout
         seo={{
           title: 'Home',
           keywords: [`react`, `flutter`, `aws`],
+          slug: '/articulos',
         }}
       >
         <h1>Artículos</h1>
@@ -39,12 +77,19 @@ class ArticlesPage extends React.Component {
                 {category}
               </span>
             ))}
+
+            <ArticlesFilter
+              count={filteredArticles.length}
+              filterText={this.state.filterText ? this.state.filterText : ''}
+              onChange={(text) => {
+                this.setState({
+                  filterText: text,
+                });
+              }}
+            />
             <hr />
-            <div className='grid grid-cols-12'>
-              {articles.map((article) => (
-                <ArticleCard key={article.slug} article={article} />
-              ))}
-            </div>
+
+            <ArticlesContainer articles={filteredArticles} />
           </section>
         </div>
       </Layout>
@@ -53,15 +98,15 @@ class ArticlesPage extends React.Component {
 }
 
 ArticlesPage.propTypes = {
-  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  articles: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tags: PropTypes.object.isRequired,
+  categories: PropTypes.object.isRequired,
+  articles: PropTypes.object.isRequired,
 };
 
 const renderArticles = () => (
   <StaticQuery
     query={graphql`
-      query AllTags {
+      query ArticlesPage {
         tags: allMarkdownRemark(
           filter: {
             frontmatter: {
