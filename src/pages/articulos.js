@@ -60,7 +60,9 @@ class ArticlesPage extends React.Component {
           slug: '/articulos',
         }}
       >
-        <h1>Artículos</h1>
+        <h2>Artículos</h2>
+
+        <p>{JSON.stringify(this.props)}</p>
         <div className='flex mt-3'>
           <aside className='hidden md:w-1/4 md:block xl:w-1/5'>
             <h3>Tags</h3>
@@ -98,6 +100,7 @@ class ArticlesPage extends React.Component {
 }
 
 ArticlesPage.propTypes = {
+  isCategoryPage: PropTypes.bool.isRequired,
   tags: PropTypes.object.isRequired,
   categories: PropTypes.object.isRequired,
   articles: PropTypes.object.isRequired,
