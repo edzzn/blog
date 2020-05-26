@@ -13,7 +13,6 @@ h1 {
   @apply text-5xl;
   @apply font-sans;
   @apply font-black;
-  @apply leading-none
 }
 
 h2 {
@@ -34,6 +33,11 @@ h4 {
 h5 {
   @apply text-xl;
   @apply font-normal;
+}
+
+/* Blog */
+.blog-post-content>p {
+  @apply mb-4;
 }
 
 /* Categories */
