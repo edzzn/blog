@@ -17,6 +17,7 @@ function ArticleTemplate({
       seo={{
         title: frontmatter.title,
         keywords: [`react`, `flutter`, `aws`],
+        image: frontmatter.image,
       }}
     >
       <section className='lg:mx-32'>
