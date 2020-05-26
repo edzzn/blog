@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-tailwind",
-  "description": "Gatsby starter styled with Tailwind",
-  "version": "4.0.0",
-  "author": "Taylor Bryant <taylor@bryant.io>",
+  "name": "edissonreinozo.com",
+  "description": "Blog de Edisson Reinozo, React, Flutter y AWS",
+  "version": "0.1.0",
+  "author": "Edisson Reinozo <edisson350@gmail.com>",
   "dependencies": {
     "gatsby": "2.22.9",
     "gatsby-plugin-manifest": "2.4.9",
@@ -23,9 +23,9 @@
   },
   "keywords": [
     "gatsby",
-    "tailwind",
-    "tailwindcss",
-    "purgecss"
+    "React",
+    "AWS",
+    "Flutter"
   ],
   "license": "MIT",
   "scripts": {
@@ -58,9 +58,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/taylorbryant/gatsby-starter-tailwind"
+    "url": "https://github.com/edzzn/blog"
   },
   "bugs": {
-    "url": "https://github.com/taylorbryant/gatsby-starter-tailwind/issues"
+    "url": "https://github.com/edzzn/blog/issues"
   }
 }
