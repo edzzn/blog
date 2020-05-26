@@ -63,7 +63,7 @@ h5 {
 /* Code - Prism */
 
 :not(pre)>code[class*="language-"] {
-  @apply bg-flutter-dark;
+  @apply bg-flutter;
   @apply text-white;
   @apply p-1;
 }
@@ -82,9 +82,7 @@ h5 {
   padding: 0;
   overflow: initial;
   float: left;
-  /* 1 */
   min-width: 100%;
-  /* 2 */
 }
 
 
