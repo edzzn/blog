@@ -40,12 +40,21 @@ h5 {
   @apply mb-4;
 }
 
+.blog-post-content>p>img {
+  display: block;
+  margin: 0 auto;
+}
+
 /* Categories */
 
 .category {
   @apply text-xl;
   @apply text-flutter;
   @apply font-bold;
+}
+
+.category:hover {
+  @apply text-react;
 }
 
 /* Tags */
@@ -64,23 +73,27 @@ h5 {
   @apply font-semibold;
 }
 
+.tag:hover {
+  @apply bg-black;
+}
+
 /* Code - Prism */
 
-:not(pre)>code[class*="language-"] {
+:not(pre)>code[class*='language-'] {
   @apply bg-flutter;
   @apply text-white;
   @apply p-1;
 }
 
 .gatsby-highlight {
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   border-radius: 0.3em;
   margin: 0.5em 0;
   padding: 1em;
   overflow: auto;
 }
 
-.gatsby-highlight pre[class*="language-"] {
+.gatsby-highlight pre[class*='language-'] {
   background-color: transparent;
   margin: 0;
   padding: 0;
@@ -89,7 +102,6 @@ h5 {
   min-width: 100%;
 }
 
-
 .gatsby-highlight-code-line {
   background-color: #2a4365;
   display: block;
@@ -97,7 +109,7 @@ h5 {
   margin-left: -1em;
   padding-right: 1em;
   padding-left: 0.75em;
-  border-left: 0.25em solid #39DBF9;
+  border-left: 0.25em solid #39dbf9;
 }
 
 /* END Code - Prism */

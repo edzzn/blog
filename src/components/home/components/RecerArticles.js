@@ -23,11 +23,8 @@ RecentArticles.propTypes = {
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      updated: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-      topic: PropTypes.string,
       image: PropTypes.string.isRequired,
     })
   ).isRequired,
@@ -37,7 +34,8 @@ const RenderRecentArticles = () => (
   <StaticQuery
     query={graphql`
       query RecentArticles {
-        categories: allMarkdownRemark(
+        articles: allMdx(
+          sort: { order: DESC, fields: [frontmatter___date] }
           filter: {
             frontmatter: {
               templateKey: { eq: "article" }
@@ -49,54 +47,14 @@ const RenderRecentArticles = () => (
           edges {
             node {
               frontmatter {
-                category
-              }
-            }
-          }
-        }
-        tags: allMarkdownRemark(
-          filter: {
-            frontmatter: {
-              templateKey: { eq: "article" }
-              published: { eq: true }
-            }
-          }
-          limit: 1000
-        ) {
-          edges {
-            node {
-              frontmatter {
-                tags
-              }
-            }
-          }
-        }
-        articles: allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
-          filter: {
-            frontmatter: {
-              templateKey: { eq: "article" }
-              published: { eq: true }
-            }
-          }
-          limit: 1000
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-                # readingTime {
-                #   text
-                # }
-              }
-              frontmatter {
                 title
-                date
-                updated
-                description
-                tags
                 category
                 image
+                tags
+                description
+              }
+              fields {
+                slug
               }
             }
           }
