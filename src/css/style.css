@@ -36,6 +36,18 @@ h5 {
   @apply font-normal;
 }
 
+/* Blog */
+.blog-post-content>p {
+  @apply mb-4;
+}
+
+/* Al */
+
+.gatsby-resp-image-figcaption {
+  text-align: center;
+}
+
+
 /* Categories */
 
 .category {
