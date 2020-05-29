@@ -44,6 +44,10 @@ h5 {
   @apply font-bold;
 }
 
+.category:hover {
+  @apply text-react;
+}
+
 /* Tags */
 
 .tags {}
@@ -58,6 +62,10 @@ h5 {
   @apply rounded;
   @apply text-white;
   @apply font-semibold;
+}
+
+.tag:hover {
+  @apply bg-black;
 }
 
 /* Code - Prism */
