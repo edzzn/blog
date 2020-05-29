@@ -13,7 +13,6 @@ h1 {
   @apply text-5xl;
   @apply font-sans;
   @apply font-black;
-  @apply leading-none
 }
 
 h2 {
@@ -37,16 +36,9 @@ h5 {
 }
 
 /* Blog */
-.blog-post-content>p {
+.blog-post-content > p {
   @apply mb-4;
 }
-
-/* Al */
-
-.gatsby-resp-image-figcaption {
-  text-align: center;
-}
-
 
 /* Categories */
 
@@ -62,7 +54,8 @@ h5 {
 
 /* Tags */
 
-.tags {}
+.tags {
+}
 
 .tag {
   @apply px-2;
@@ -82,31 +75,28 @@ h5 {
 
 /* Code - Prism */
 
-:not(pre)>code[class*="language-"] {
-  @apply bg-flutter-dark;
+:not(pre) > code[class*='language-'] {
+  @apply bg-flutter;
   @apply text-white;
   @apply p-1;
 }
 
 .gatsby-highlight {
-  background-color: #1F1F1F;
+  background-color: #1f1f1f;
   border-radius: 0.3em;
   margin: 0.5em 0;
   padding: 1em;
   overflow: auto;
 }
 
-.gatsby-highlight pre[class*="language-"] {
+.gatsby-highlight pre[class*='language-'] {
   background-color: transparent;
   margin: 0;
   padding: 0;
   overflow: initial;
   float: left;
-  /* 1 */
   min-width: 100%;
-  /* 2 */
 }
-
 
 .gatsby-highlight-code-line {
   background-color: #2a4365;
@@ -115,7 +105,7 @@ h5 {
   margin-left: -1em;
   padding-right: 1em;
   padding-left: 0.75em;
-  border-left: 0.25em solid #39DBF9;
+  border-left: 0.25em solid #39dbf9;
 }
 
 /* END Code - Prism */
