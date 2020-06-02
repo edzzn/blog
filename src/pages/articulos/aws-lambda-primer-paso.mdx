@@ -1,0 +1,193 @@
+---
+templateKey: article
+title: 'El primer paso en AWS Lambda, Funciones serverless'
+date: '2020-05-26'
+updated: '2020-05-26'
+description: En este artículo vamos a aprender las bases de AWS Lambda creando un hola mundo de una función serverless.
+tags:
+  - AWS
+  - Lambda
+  - Serverless
+category: AWS
+image: /img/articulos/aws-lambda-primer-paso.jpg
+published: true
+---
+
+import { Note } from '../../components/mdx';
+
+## ¿Por qué Serverless?
+
+Serverless es la siguiente evolución de Computación en la nube ☁️💻☁️ (_Cloud Computing_).
+
+### IaaS - Infraestructura como Servicio
+
+Anteriormente la mejor alternativa que teníamos en AWS era EC2 (Elastic Cloud Computing). **EC2 es IaaS o infraestructura como servicio**. Es decir se puede renter un servidor de amazon con ciertas prestaciones y sobre este instalar todo lo que necesitamos para ejecutar nuestras aplicaciones. Con todas las ventajas de escalamiento bajo demanda.
+
+La ventaja de utilizar EC2 es que podemos pagar solamente por los recursos que necesitamos y no debemos preocuparnos por el mantenimiento de hardware.
+
+### FaaS - Funciones c omo Servicio
+
+**FaaS** toma esta idea aún más allá. Ahora no solamente no debemos preocuparnos por el hardware en el que se ejecutan nuestras aplicaciones, si no ahora **no nos preocupamos ni el sistema operativo o runtime** que necesita para ejecutarse. Con una PaaS solamente nos preocupamos en nuestra aplicación.
+
+Otra de las enormes ventajas de funciones Lambda o serverless es que **solamente pagamos por lo que consumimos**. Es decir solamente nos generá un gasto por los recursos y el tiempo en que nuestras funciones se ejecutan. No pagamos por tiempo Idle.
+
+Con FaaS, nosotros desplegamos código como funciones independientes y configuramos reglas para su ejecución.
+
+## AWS Lambda
+
+Lambda es la plataforma FaaS de Amazon.
+
+![AWS Lambdas ](/img/articulos/aws-lambda-hola-mundo/faas.png)
+
+### Creando nuestra priemro función Lambda
+
+#### 1: Ingregar a la consosola de AWS Lambda
+
+Vamos a [console.aws.amazon.com/lambda/](https://console.aws.amazon.com/lambda/), iniciamos sesión de ser necesario.
+
+#### 2: Creamos una nueva función
+
+Dependiendo si ya hemos creado una función anteriormente nos encontramos con pantallas distintas, Pero en cualquiera damos click al botón `Create function` para crear una nueva función.
+
+![Consola Lambda](/img/articulos/aws-lambda-hola-mundo/aws-lambda-console.png)
+![Consola Lambda](/img/articulos/aws-lambda-hola-mundo/aws-lambda-console-2.png)
+
+### 3: Creamos la función:
+
+Seleccionamos `Author from scratch`, le damos un nombre a nuestra función y yo quiero escribirla en **nodejs** así que no cambiamos nada más. Y creamos la función dandole click en `Create Function`
+![Consola Lambda](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-1.png)
+
+**Listo**, hemos creado nuestra primero función.
+![Consola Lambda](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-2.png)
+
+El código de la función se puede observar en la sección `Function Code`.
+
+```javascript
+exports.handler = async (event) => {
+  // TODO implement
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify('Hello from Lambda!'),
+  };
+  return response;
+};
+```
+
+Lo que hace esto es simplemente responder a cualquier evento con el contenido de `response`.
+
+### 4: Probando nuestra función
+
+Para probar nuestra función, podemos encontrar en la parte superior la opcion `Test`. En esta configuramos el evento que es el parámetro que le podemos enviar a nuestra función.
+
+Cambiamos el objeto json por el siguiente, y luego creamos el evento de prueba.
+
+```json
+{
+  "producto": "Computador",
+  "categoria": "Tecnología",
+  "precio": 10
+}
+```
+
+![Consola Lambda](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-3.png)
+
+Con el evento creado lo podemos observar el evento creado se encuentra en la parte superior junto a `Test`.
+Al ejecutar la función nos retorna el resultado en el cuadro marcado como `Salida` junto con mucha información util de la función como: el tiempo de ejecución, maxima memoria utilizada y el `Log output` que nos va a ser muy util para poder debugear nuestras funciones ya que es ahí en donde se muestra el `console.log()`.
+
+![Consola Lambda](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-4.png)
+
+Oficialmente **ya creaste tu primera función Lambda**. En los siguientes pasos aprenderaz a hacerla más util.
+
+### 5: (Extra) Utilizando datos del evento
+
+Para acceder a las propiedades del evento como `producto` o `precio` que definimos en el `EventoPrueba` simplemente llamamos a sus propiedades.
+
+`event` es simplemente un objecto `json` y lo podemos tranfromar como cualquier otro.
+
+```javascript
+exports.handler = async (event) => {
+  console.log(`Producto: ${event.producto}`);
+  console.log(`Categoría: ${event.categoria}`);
+  console.log(`Precio: ${event.precio}`);
+
+  const jsonResponse = {
+    producto: event.producto,
+    precio: event.precio,
+  };
+
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify(jsonResponse),
+  };
+  return response;
+};
+```
+
+Guardamos los cambios y nuevamente ejecutamos la prueba.
+
+![Consola Lambda](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-5.png)
+
+Podemos comprobar el resultado y como en la salida de la función, tanto en los logs.
+
+### 6: (Extra) Configuaciones de la función lambda
+
+En esta ultima sección hablaremos brevemente como conectar nuestra función con otros servicios de AWS, pero esta configuración no la realizaremos en esta publicación.
+
+#### Sección `Designer`
+
+![Consola Lambda](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-6.png)
+
+En esta sección podemos configurar 3 cosas:
+
+- **Triggers**: Cuando se activa nuestra función. Puede conectarse con:
+  - LLamada aplicaciones
+  - Cambio en AWS S3
+  - Cambio en AWS DynamoDB
+  - Otros servcios externos
+- **Layers**: Utilizado para importar paquetes pesados a nuestra función. Mejora el rendimiendo de las funciones.
+- **Destinations**: Permite utilizar la salida de la función como entrada de:
+  - Otra función
+  - SNS (Simple Notification Service )
+  - SQS (Simple Queue Service)
+
+#### Entornos de variable
+
+La sección de Variables de Entorno se explica sólo. Aquí podemos almacenar variables que no queremos quemarlas en el código. Un excelente ejemplo de esto son las llaves de apis.
+
+![Lambda - Variables de entorno](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-7.png)
+
+#### Tags -Etiquetas
+
+Las etiquetas facilitan la administración de proyectos más grandes. Esta información no configura nada. Es unicamente para nosotros. En las etiquetas solemos encontrar datos como el entorno que esta desplegado y tal vez el proyecto al que pertenece.
+
+![Lambda - Variables de entorno](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-8.png)
+
+#### Configuración básica
+
+La siguiente configuración es una de las más importante ya que esta determina la capacidad computacional y el costo.
+
+![Lambda - Configuración básica](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-9.png)
+
+La capacidad computacional en las funciones Lambda esta ligado a la cantidad de RAM. Y la cantiadad de memoria va desde 128MB hasta 3GB.
+
+El tiempo de ejecución máximo denominado como _timeout_ tiene un límite de 15 minutos.
+
+Si en álgun momento necesitamos ejecutar un método por más de 15 minutos debemos utilizar servicios como `Step Functions`.
+
+![Lambda - Configuración básica](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-10.png)
+
+#### Monitoreo
+
+Esta sección de monitoreo es muy util porque nos avisará como se esta comportando nuestra función. Como observamos en la siguiente imagen podemos observar el número de invocaciones, la duración de las mismas entre otros datos.
+
+![Lambda - Configuración básica](/img/articulos/aws-lambda-hola-mundo/aws-lambda-creation-11.png)
+
+---
+
+<br />
+
+## Felicidades 🙌🎉
+
+¡Si llegaste hasta aquí estoy seguro que **aprendiste bastante**!
+
+Si te gusto y te aportó valor el post me gustaría mucho que lo compartas o me comentes en [Twitter](https://twitter.com/edzznR) cómo te parecio el post y si tienes algún tema en específico que quisieras que cubra me gustaría conocerlo.

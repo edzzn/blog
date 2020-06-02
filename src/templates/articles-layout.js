@@ -15,20 +15,22 @@ export default function ArticleTemplate({ pageContext, children }) {
         keywords: pageInfo.tags,
       }}
     >
-      <h1>{pageInfo.title}</h1>
+      <section className='max-w-3xl mx-auto'>
+        <h1>{pageInfo.title}</h1>
 
-      <img src={pageInfo.image} />
-      <Link to={`/articulos/categoria/${slugify(pageInfo.category)}`}>
-        <span className='category'>{pageInfo.category}</span>
-      </Link>
-      <div className='tags my-2'>
-        {pageInfo.tags.map((tag) => (
-          <Link to={`/articulos/tag/${slugify(tag)}`} key={tag}>
-            <span className='tag'>{tag}</span>
-          </Link>
-        ))}
-      </div>
-      <section className='blog-post-content'>{children}</section>
+        <img src={pageInfo.image} />
+        <Link to={`/articulos/categoria/${slugify(pageInfo.category)}`}>
+          <span className='category'>{pageInfo.category}</span>
+        </Link>
+        <div className='tags my-2'>
+          {pageInfo.tags.map((tag) => (
+            <Link to={`/articulos/tag/${slugify(tag)}`} key={tag}>
+              <span className='tag'>{tag}</span>
+            </Link>
+          ))}
+        </div>
+        <section className='blog-post-content'>{children}</section>
+      </section>
     </Layout>
   );
 }
