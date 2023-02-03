@@ -6,7 +6,7 @@
   "dependencies": {
     "@mdx-js/mdx": "^1.6.4",
     "@mdx-js/react": "^1.6.4",
-    "gatsby": "2.22.9",
+    "gatsby": "5.5.0",
     "gatsby-plugin-google-analytics": "^2.3.2",
     "gatsby-plugin-manifest": "2.4.9",
     "gatsby-plugin-mdx": "^2.14.1",
@@ -14,7 +14,7 @@
     "gatsby-plugin-offline": "3.2.7",
     "gatsby-plugin-postcss": "2.3.2",
     "gatsby-plugin-react-helmet": "3.3.2",
-    "gatsby-plugin-sharp": "^2.6.9",
+    "gatsby-plugin-sharp": "^2.14.4",
     "gatsby-remark-images": "^3.3.8",
     "gatsby-remark-prismjs": "^3.5.2",
     "gatsby-source-filesystem": "^2.3.8",
